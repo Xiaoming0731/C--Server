@@ -2,6 +2,7 @@
 #include "Socket.h"
 #include "InetAddress.h"
 #include "Channel.h"
+#include "Acceptor.h"
 #include <cerrno>
 #include <cstdio>
 #include <functional>
@@ -26,7 +27,7 @@ Server::Server(EventLoop *_loop) : loop(_loop){
 
 Server::~Server()
 {
-    
+    delete acceptor;
 }
 
 void Server::handleReadEvent(int sockfd){
