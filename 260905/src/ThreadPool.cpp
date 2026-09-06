@@ -16,7 +16,9 @@ ThreadPool::ThreadPool(int size):stop(false)
                 {
                     std::unique_lock<std::mutex> lock(task_mtx);
                     cv.wait(lock,[this](){return stop||!tasks.empty();});
-                    if(stop&&tasks.empty())return ;
+                    if(stop&&tasks.empty()){
+                        return ;
+                    }
                     task=tasks.front();
                     tasks.pop();
                 }
@@ -27,7 +29,6 @@ ThreadPool::ThreadPool(int size):stop(false)
         }));
     }
 }
-
 
 ThreadPool::~ThreadPool()
 {
@@ -52,8 +53,8 @@ void ThreadPool::add(std::function<void()> func)
         if(stop)
         {
             throw std::runtime_error("ThreadPool already stop, can't add task any more");
-            tasks.emplace(func);
-         }
-        cv.notify_one();
+        }
+        tasks.emplace(std::move(func));
     }
+    cv.notify_one();
 }
