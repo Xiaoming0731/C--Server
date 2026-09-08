@@ -1,0 +1,59 @@
+// #pragma once
+// #include <functional>
+// #include <vector>
+// #include <queue>
+// #include <thread>
+// #include <mutex>
+// #include <condition_variable>
+// #include <stdexcept>
+
+// class ThreadPool
+// {
+// private:
+//     std::vector<std::thread> threads;
+//     std::queue<std::function<void()>> tasks;
+//     std::mutex task_mtx;
+//     std::condition_variable cv;
+//     bool stop;
+// public:
+//     ThreadPool(int size=10);
+//     ~ThreadPool();
+
+//     ThreadPool(const ThreadPool&)=delete;
+//     ThreadPool& operator=(const ThreadPool&) = delete;
+//     ThreadPool(ThreadPool&&) = delete;
+//     ThreadPool& operator=(ThreadPool&&) = delete;
+
+//     void add(std::function<void()>);
+// };
+
+
+
+#pragma once
+#include <functional>
+#include <vector>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <stdexcept>
+
+class ThreadPool
+{
+private:
+    std::vector<std::thread> threads_;
+    std::queue<std::function<void()>> tasks_;
+    std::mutex task_mtx_;
+    std::condition_variable cv_;
+    bool stop_;
+public:
+    ThreadPool(int size = 10);
+    ~ThreadPool();
+
+    ThreadPool(const ThreadPool&) = delete;
+    ThreadPool& operator=(const ThreadPool&) = delete;
+    ThreadPool(ThreadPool&&) = delete;
+    ThreadPool& operator=(ThreadPool&&) = delete;
+
+    void add(std::function<void()> func);
+};
