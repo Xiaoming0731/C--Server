@@ -13,6 +13,7 @@ void HttpResponseCallback(const HttpRequest &request, HttpResponse *response)
         response->SetStatusCode(HttpResponse::HttpStatusCode::k400BadRequest);
         response->SetStatusMessage("Bad Request");
         response->SetCloseConnection(true);
+        return ;
     }
 
     {
