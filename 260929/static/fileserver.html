@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>文件操作</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: #f5f6f8;
+            font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #2c3e50;
+            padding: 48px 16px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 32px 36px;
+            width: 640px;
+            max-width: 100%;
+        }
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 0 24px 0;
+        }
+        form.upload {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        input[type="file"] {
+            flex: 1;
+            min-width: 200px;
+            font-size: 13px;
+        }
+        button {
+            padding: 9px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #4a90d9;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        button:hover { background: #3a7bc0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eef0f3;
+            font-size: 14px;
+        }
+        th {
+            color: #8a94a0;
+            font-weight: 500;
+            background: #fafbfc;
+        }
+        td.ops { white-space: nowrap; }
+        td a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid #dcdfe6;
+            color: #4a5568;
+            transition: all .2s;
+        }
+        td a:hover { border-color: #4a90d9; color: #4a90d9; }
+        td a:last-child:hover { border-color: #e06b6b; color: #e06b6b; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>文件操作示例</h1>
+        <form class="upload" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.jpg,.png">
+            <button type="submit">上传文件</button>
+        </form>
+        <table>
+            <tr>
+                <th>文件名</th>
+                <th>操作</th>
+            </tr>
+            <!--filelist-->
+        </table>
+    </div>
+</body>
+</html>
